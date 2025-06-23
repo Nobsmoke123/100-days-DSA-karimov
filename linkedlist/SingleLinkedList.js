@@ -7,6 +7,7 @@ class SingleLinkedList {
     this.size = 0; // To keep track of the number of nodes in the list
   }
 
+  //   O(1) time complexity
   append(value) {
     const newNode = new Node(value);
 
@@ -21,6 +22,29 @@ class SingleLinkedList {
     this.size++;
   }
 
+  //   O(N) time complexity
+  traverse() {
+    let current = this.head;
+    while (current !== null) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
+
+  //   O(N) time complexity
+  search(target) {
+    let current = this.head;
+
+    while (current !== null) {
+      if (current.value === target) {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  }
+
+  //   O(N) time complexity
   insert(value, index) {
     if (index < 0 || index > this.size) {
       throw new Error("Index out of bounds.");
@@ -51,6 +75,7 @@ class SingleLinkedList {
     this.size++;
   }
 
+  //   O(N) time complexity
   toString() {
     let current = this.head;
     let result = "";
@@ -64,6 +89,7 @@ class SingleLinkedList {
     return result;
   }
 
+  //   O(1) time complexity
   prepend(value) {
     const newNode = new Node(value);
 
@@ -90,3 +116,6 @@ list.insert(20, 0);
 list.insert(30, 2);
 list.insert(5, 1);
 console.log(list.toString()); // " 5 -> 10 -> 15 -> 20 -> 30"
+list.traverse();
+console.log(list.search(20));
+console.log(list.search(50));
