@@ -21,8 +21,34 @@ class SingleLinkedList {
     this.size++;
   }
 
-  insert() {
-    
+  insert(value, index) {
+    if (index < 0 || index > this.size) {
+      throw new Error("Index out of bounds.");
+    }
+
+    if (this.size === 0 && index !== 0) {
+      throw new Error("Cannot insert at non-zero index in an empty list.");
+    }
+
+    if (index === this.size) {
+      this.append(value);
+      return;
+    }
+
+    const newNode = new Node(value);
+    let tempNode = this.head;
+
+    if (index === 0) {
+      newNode.next = this.head;
+      this.head = newNode;
+    } else {
+      for (let i = 0; i < index - 1; i++) {
+        tempNode = tempNode.next;
+      }
+      newNode.next = tempNode.next;
+      tempNode.next = newNode;
+    }
+    this.size++;
   }
 
   toString() {
@@ -53,9 +79,14 @@ class SingleLinkedList {
 }
 
 const list = new SingleLinkedList();
-list.append(10);
-list.append(20);
-list.append(30);
-console.log(list.toString()); // " 10 -> 20 -> 30"
-list.prepend(5);
-console.log(list.toString()); // " 5 -> 10 -> 20 -> 30"
+// list.append(10);
+// list.append(20);
+// list.append(30);
+// console.log(list.toString()); // " 10 -> 20 -> 30"
+// list.prepend(5);
+// console.log(list.toString()); // " 5 -> 10 -> 20 -> 30"
+list.insert(15, 0);
+list.insert(20, 0);
+list.insert(30, 2);
+list.insert(5, 1);
+console.log(list.toString()); // " 5 -> 10 -> 15 -> 20 -> 30"
