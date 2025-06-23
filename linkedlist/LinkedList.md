@@ -27,3 +27,7 @@ In this type of linked list the tail contains no only data but the address to th
 ## Circular Doubly Linked List
 
 In this type of linked list the tail contains the data, the address to the head node and also the address to the previous node.
+
+## Linked list methods and their time complezity.
+
+![alt text](image-4.png)
