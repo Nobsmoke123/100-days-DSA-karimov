@@ -43,10 +43,8 @@ console.log(printLinkedList(list2));
 function mergeLinkedLists(head1, head2) {
   if (head1 === null) return head2;
   if (head2 === null) return head1;
-
   let dummy = new ListNode(-1);
   let current = dummy;
-
   while (head1 !== null && head2 !== null) {
     if (head1.val <= head2.val) {
       current.next = head1;
@@ -57,13 +55,11 @@ function mergeLinkedLists(head1, head2) {
     }
     current = current.next;
   }
-
   if (head1 !== null) {
     current.next = head1;
   } else if (head2 !== null) {
     current.next = head2;
   }
-
   return dummy.next;
 }
 
