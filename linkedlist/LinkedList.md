@@ -31,3 +31,7 @@ In this type of linked list the tail contains the data, the address to the head 
 ## Linked list methods and their time complezity.
 
 ![alt text](image-4.png)
+
+## Image for question (remove_linked_list_elements)
+
+![alt text](image-5.png)
