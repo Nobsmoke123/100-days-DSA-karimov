@@ -116,6 +116,28 @@ function mergeLinkedList(head1, head2) {
   return dummy.head;
 }
 
+function mergeLinkedListShorter(head1, head2) {
+  const dummy = new ListNode(0); // dummy node
+  let current = dummy;
+  while (head1 && head2) {
+    if (head1.val <= head2.val) {
+      current.next = head1;
+      head1 = head1.next;
+    } else {
+      current.next = head2;
+      head2 = head2.next;
+    }
+    current = current.next;
+  }
+  // Attach the remaining nodes (only one of them will be non-null)
+  current.next = head1 || head2;
+  return dummy.next;
+}
+
+// 1 2 3 4 5 6
+// 0 1 2 3 4 5
+
 console.log("###--Result--###");
-console.log(printLinkedList(mergeLinkedList(list1, list2)));
-console.log(printLinkedList(mergeLinkedLists(list1, list2)));
+// console.log(printLinkedList(mergeLinkedList(list1, list2)));
+// console.log(printLinkedList(mergeLinkedLists(list1, list2)));
+console.log(printLinkedList(mergeLinkedListShorter(list1, list2)));
