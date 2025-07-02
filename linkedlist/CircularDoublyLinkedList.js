@@ -165,6 +165,67 @@ class CircularDoublyLinkedList {
       this.size = this.size + 1;
     }
   }
+
+  popFirst() {
+    if (!this.head) {
+      return null;
+    }
+
+    let temp = this.head;
+    const next = this.head.next;
+    this.head = next;
+    this.tail.next = this.head;
+    next.prev = this.tail;
+    temp.next = null;
+    temp.prev = null;
+    this.size = this.size - 1;
+    if (this.size === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+  }
+
+  pop() {
+    if (!this.head) {
+      return null;
+    }
+
+    let temp = this.tail;
+    const prevNode = this.tail.prev;
+    this.tail = prevNode;
+    this.head.prev = prevNode;
+    prevNode.next = this.head;
+    temp.next = null;
+    temp.prev = null;
+    this.size = this.size - 1;
+    if (this.size === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.size || index === undefined) {
+      return null;
+    }
+    if (index === 0) {
+      return this.popFirst();
+    } else if (index === this.size - 1) {
+      return this.pop();
+    } else {
+      const preNode = this.get(index - 1);
+      const nextNode = preNode.next.next;
+      preNode.next = nextNode;
+      nextNode.prev = preNode;
+      this.size = this.size - 1;
+    }
+  }
+
+  deleteAll() {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
 }
 
 const cdl = new CircularDoublyLinkedList();
