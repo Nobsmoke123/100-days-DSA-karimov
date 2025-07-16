@@ -84,6 +84,27 @@ class BinaryTree {
 
   postOrder() {
     if (this.root === null) return;
+    const stack = [this.root];
+    while (stack.length > 0) {
+      const node = stack[stack.length - 1];
+      if (node.left !== null) {
+        stack.push(node.right);
+        stack.push(node.left);
+      } else {
+        const popped = stack.pop();
+        const prevNode = stack[stack.length - 1];
+        if (
+          prevNode !== undefined &&
+          prevNode?.left !== null &&
+          prevNode?.right !== null &&
+          prevNode.right === popped
+        ) {
+          prevNode.left = null;
+          prevNode.right = null;
+        }
+        console.log(popped.value);
+      }
+    }
   }
 
   inOrder() {
@@ -164,5 +185,9 @@ class BinaryTree {
         queue.enqueue(node.right);
       }
     }
+  }
+
+  deleteDeepestNode(){
+    
   }
 }
